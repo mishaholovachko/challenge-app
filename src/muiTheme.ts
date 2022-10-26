@@ -7,28 +7,28 @@ export const theme = createTheme({
           }
 	},
 
-	typography: {
-		fontFamily: ['Inter', 'sans-serif'].join(','),
-		h1: {
-			fontSize: '36px',
-			fontWeight: 700,
-			lineHeight: '43.57px',
+	components: {
+		MuiChip: {
+		  styleOverrides: {
+			colorPrimary: {
+			  backgroundColor: 'white',
+			  color: 'black'
+			},
+			colorSecondary: {
+			  backgroundColor: '#444444',
+			  color: 'white',
+			},
+			root: {
+				border: '1px solid #444444',
+				borderRadius: 16,
+				'&:hover': {
+					backgroundColor: '#444444',
+					boxShadow: 'none',
+				},
+
+			}
+		  },
 		},
-		h2: {
-			fontSize: '24px',
-			fontWeight: 700,
-			lineHeight: '29.05px',
-		},
-		h3: {
-			fontSize: '16px',
-			fontWeight: 700,
-			lineHeight: '20px',
-		},
-		h4: {
-			fontSize: '16px',
-			fontWeight: 400,
-			lineHeight: '20px',
-		},
-	},
+	  },
 
 })
