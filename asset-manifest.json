@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/react-gh-pages/static/js/main.44795291.js",
-    "static/js/787.663128a5.chunk.js": "/react-gh-pages/static/js/787.663128a5.chunk.js",
-    "index.html": "/react-gh-pages/index.html",
-    "main.44795291.js.map": "/react-gh-pages/static/js/main.44795291.js.map",
-    "787.663128a5.chunk.js.map": "/react-gh-pages/static/js/787.663128a5.chunk.js.map"
+    "main.js": "/challenge-app/static/js/main.423fecd7.js",
+    "static/js/787.663128a5.chunk.js": "/challenge-app/static/js/787.663128a5.chunk.js",
+    "index.html": "/challenge-app/index.html",
+    "main.423fecd7.js.map": "/challenge-app/static/js/main.423fecd7.js.map",
+    "787.663128a5.chunk.js.map": "/challenge-app/static/js/787.663128a5.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.44795291.js"
+    "static/js/main.423fecd7.js"
   ]
 }
