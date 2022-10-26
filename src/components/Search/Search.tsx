@@ -1,5 +1,6 @@
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from "@mui/material"
-import { ChangeEvent, FC, ReactElement, useState } from "react"
+import { FormControl, OutlinedInput } from "@mui/material"
+import { ChangeEvent, ReactElement } from "react"
+
 import SearchIcon from "../../assets/icons/SearchIcon";
 
 type SearchType = {
@@ -9,15 +10,14 @@ type SearchType = {
 const Search = ({handleSearch}: SearchType): ReactElement => {
 
     return (
-        <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+        <FormControl  variant="outlined">
             <OutlinedInput
-                placeholder="Search"
-                // value={values.search}
-                onChange={handleSearch}
+                sx={{ height: 40, backgroundColor: 'white' }}
                 startAdornment={<SearchIcon />}
+                onChange={handleSearch}
+                placeholder="Search"
             />
         </FormControl>
-
     )
 }
 

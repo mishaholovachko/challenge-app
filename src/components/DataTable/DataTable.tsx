@@ -11,6 +11,8 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
 
 import { visuallyHidden } from '@mui/utils';
+import { TableItemType } from '../../App';
+import { formatDate } from '../../helpers';
 
 export interface Data {
   type: string;
@@ -46,7 +48,7 @@ function getComparator<Key extends keyof any>(
 
 // This method is created for cross-browser compatibility, if you don't
 // need to support IE11, you can use Array.prototype.sort() directly
-function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
+function stableSort<T>(array: readonly TableItemType[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
@@ -120,9 +122,11 @@ function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
+            align={'right'}
+            padding={'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={{textTransform: 'uppercase'}}
+
           >
             <TableSortLabel
               active={orderBy === headCell.id}
@@ -146,13 +150,13 @@ function EnhancedTableHead(props: EnhancedTableProps) {
 
 type TableDataType = {
     activeFilter: string
-    data: [],
+    data: TableItemType[],
 }
 
 const DataTable = ({data, activeFilter}: TableDataType) => {
 
   const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('type');
+  const [orderBy, setOrderBy] = React.useState<keyof Data>('name');
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -165,27 +169,6 @@ const DataTable = ({data, activeFilter}: TableDataType) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  };
-
-
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected: readonly string[] = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    setSelected(newSelected);
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -227,26 +210,12 @@ const DataTable = ({data, activeFilter}: TableDataType) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name as string)}
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.name}
-                    >
-
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                      >
-                        {row.type}
-                      </TableCell>
+                    <TableRow key={row.name}>
+                      <TableCell align="right">{row.type}</TableCell>
                       <TableCell align="right">{row.name}</TableCell>
                       <TableCell align="right">{row.address}</TableCell>
                       <TableCell align="right">{row.phone}</TableCell>
-                      <TableCell align="right">{row.createdAt}</TableCell>
+                      <TableCell align="right">{formatDate(row.createdAt as string)}</TableCell>
                     </TableRow>
                   );
                 })}

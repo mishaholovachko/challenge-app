@@ -11,8 +11,4 @@ export const FILTER_ITEMS = [
       title: 'Property',
       value: 'properties'
     },
-    {
-      title: 'All',
-      value: 'all'
-    },
   ]
