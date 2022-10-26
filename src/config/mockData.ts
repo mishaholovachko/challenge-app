@@ -1,15 +1,15 @@
 export const FILTER_ITEMS = [
     {
       title: 'Agent',
-      value: 'agent'
+      value: 'agents'
     },
     {
       title: 'Shop',
-      value: 'shop'
+      value: 'shops'
     },
     {
       title: 'Property',
-      value: 'property'
+      value: 'properties'
     },
     {
       title: 'All',
